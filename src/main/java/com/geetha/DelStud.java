@@ -1,7 +1,6 @@
 package com.geetha;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,8 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/del")
 public class DelStud extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-		PrintWriter out = res.getWriter();
+		
 		int id = Integer.parseInt(req.getParameter("id"));
 		try {
 			String dburl = "jdbc:mysql://localhost:3306/studentsDB?useSSL=false";
@@ -30,7 +35,7 @@ public class DelStud extends HttpServlet {
 			res.sendRedirect("index.jsp");
 			
 		} catch (Exception e) {
-			System.out.println(e);
+			
 		}
 	}
 }

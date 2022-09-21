@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/login")
 public class Login extends HttpServlet {
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res ) throws IOException {
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
 			String passw = "Geetha2000@";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(dburl,uname,passw);
-			Statement st = con.createStatement();
+			
 			PreparedStatement pstmt = con.prepareStatement("SELECT * FROM users WHERE name=?;");
 			pstmt.setString(1,name);
 			ResultSet rs = pstmt.executeQuery();
@@ -45,7 +45,7 @@ public class Login extends HttpServlet {
 				res.sendRedirect("login.jsp");
 			}
 		} catch (Exception e) {
-			System.out.println(e);
+			
 		} 
 	}
 }

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/addStud")
 public class AddStud extends HttpServlet {
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		try {
@@ -35,10 +36,8 @@ public class AddStud extends HttpServlet {
 			pstmt.setString(4, email);
 			pstmt.executeUpdate();
 			
-			/*
-			PrintWriter out = res.getWriter();
-			out.println(name+email+year+age);
-			*/
+			
+			
 			
 			pstmt.close();
 			st.close();
@@ -47,7 +46,7 @@ public class AddStud extends HttpServlet {
 			res.sendRedirect("index.jsp");
 			
 		} catch(Exception e) {
-			System.out.println(e);
+		
 		}
 
 	}
